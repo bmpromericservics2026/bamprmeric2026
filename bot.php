@@ -1,10 +1,20 @@
 <?php
 // ==============================
-// 🤖 bot.php — ORGANIZADO
+// 🤖 bot.php — ORGANIZADO + TEST
 // ==============================
 
 // 🔐 TOKEN DEL BOT
 $token = "8521201522:AAF90SGm6bahwP72Q2TSo83LDxp9ngq94MI";
+
+// ==============================
+// 👀 TEST VISUAL DESDE NAVEGADOR
+// ==============================
+// Esto SOLO responde cuando abres el archivo en el navegador (GET)
+// NO afecta al webhook (Telegram usa POST)
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    echo "BOT ACTIVO OK";
+    exit;
+}
 
 // ==============================
 // 📩 LEER UPDATE DE TELEGRAM
@@ -22,10 +32,10 @@ if (!isset($update['callback_query'])) {
     exit; // Solo trabaja con botones
 }
 
-$callback      = $update['callback_query'];
-$data          = $callback['data'];
-$chat_id       = $callback['message']['chat']['id'];
-$callback_id   = $callback['id'];
+$callback    = $update['callback_query'];
+$data        = $callback['data'];
+$chat_id     = $callback['message']['chat']['id'];
+$callback_id = $callback['id'];
 
 // ==============================
 // 🔎 VALIDAR DATA
@@ -112,5 +122,3 @@ if ($comando === "CONTINUAR") {
         ])
     ]));
 }
-
-?>
